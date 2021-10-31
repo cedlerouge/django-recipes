@@ -78,7 +78,7 @@ TEMPLATES = [
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=config("DATABASE_URL", default="postgres://recipes:recipes@localhost:5432/simple"),
+        default=config("DATABASE_URL", default="postgres://recipes:recipes@localhost:5432/recipes"),
         conn_max_age=600,
     )
 }
