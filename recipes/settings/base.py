@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "recipes.apps.accounts",
+    "recipes.apps.core",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -85,6 +87,8 @@ DATABASES = {
 # ==============================================================================
 # AUTHENTICATION AND AUTHORIZATION SETTINGS
 # ==============================================================================
+
+AUTH_USER_MODEL = "recipes.apps.accounts.CustomUser"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
