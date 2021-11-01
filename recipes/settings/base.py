@@ -88,7 +88,7 @@ DATABASES = {
 # AUTHENTICATION AND AUTHORIZATION SETTINGS
 # ==============================================================================
 
-AUTH_USER_MODEL = "recipes.apps.accounts.CustomUser"
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
