@@ -30,6 +30,6 @@ SESSION_COOKIE_SECURE = True
 sentry_sdk.init(
     dsn=config("SENTRY_DSN", default=""),
     environment=RECIPES_ENVIRONMENT,
-    release="recipes@%s" % simple.__version__,
+    release="recipes@%s" % recipes.__version__,
     integrations=[DjangoIntegration()],
 )
