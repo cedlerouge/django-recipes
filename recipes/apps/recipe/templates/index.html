@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Accueil du site de recettes</h1>
+  <p>Bienvenue sur ce site de recettes !</p>
+  <h2>Contenu dynamique</h2>
+  <p>Voici l'étendue de notre savoir:</p>
+  <ul>
+    <li><strong>Recettes:</strong> {{ num_recipes }}</li>
+  </ul>
+{% endblock %}
