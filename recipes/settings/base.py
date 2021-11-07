@@ -23,8 +23,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "recipes.apps.accounts",
-    "recipes.apps.core",
+    "recipes.apps.accounts.apps.AccountsConfig",
+    "recipes.apps.recipe.apps.RecipeConfig"
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
