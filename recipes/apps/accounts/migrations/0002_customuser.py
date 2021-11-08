@@ -39,7 +39,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'users',
             },
             managers=[
-                ('objects', recipes.apps.accounts.models.CustomUserManager()),
             ],
         ),
     ]
