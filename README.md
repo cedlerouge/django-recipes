@@ -76,3 +76,6 @@ python manage.py createsuperuser
 * /recipe/id
 * /recipe/ingredient
 * /recipe/ingredient/id
+
+
+## ideas : add a notion of group to share recipe into a group or publicly
