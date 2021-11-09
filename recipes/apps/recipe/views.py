@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from recipes.apps.recipe.models import Ingredient, IngredientList, Recipe
 
@@ -39,3 +41,19 @@ class RecipeByUserListView(LoginRequiredMixin, generic.ListView):
 
 class RecipeDetailView(generic.DetailView):
     model = Recipe
+
+
+## Forms
+class RecipeCreate(CreateView):
+    model = Recipe
+    fields = ['title', 'content', 'status']
+    #exclude = ['last_update', 'creation_date', 'edited_by', 'created_by']
+    initial = {'status': 'Draft'}
+
+class RecipeUpdate(UpdateView):
+    model = Recipe
+    fields = ['title', 'content']
+
+class RecipeDelete(DeleteView):
+    model = Recipe
+    success_url = reverse_lazy('recipes')
