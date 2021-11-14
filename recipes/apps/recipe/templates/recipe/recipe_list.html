@@ -8,8 +8,9 @@
             <tr>
                 <th>Titre</th>
                 <th>Auteur</th>
-                <th></th>
-                <th></th>
+                <th>Créée</th>
+                <th>Editeur</th>
+                <th>derniere maj</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,9 @@
             <tr>
                 <td><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></td>
                 <td>{{ recipe.created_by }}</td>
+                <td>{{ recipe.creation_date }}</td>
+                <td>{{ recipe.edited_by }}</td>
+                <td>{{ recipe.last_update }}</td>
                 <td><a href="{% url 'recipe-update' recipe.id %}">edit</a></td>
                 <td><a href="{% url 'recipe-delete' recipe.id %}">supprime</a></td>
             </tr>

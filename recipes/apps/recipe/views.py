@@ -3,6 +3,8 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from datetime import datetime
+
 from recipes.apps.recipe.models import Ingredient, IngredientList, Recipe
 
 def index(request):
@@ -21,7 +23,7 @@ def index(request):
 
 class RecipeListView(PermissionRequiredMixin, generic.ListView):
     model = Recipe
-    paginate_by = 1
+    paginate_by = 10
     permission_required = 'recipe.view_recipe'
 
     #context_object_name = 'recipe_list' # this is a default name givent by django
@@ -44,16 +46,28 @@ class RecipeDetailView(generic.DetailView):
 
 
 ## Forms
-class RecipeCreate(CreateView):
+class RecipeCreate(PermissionRequiredMixin, CreateView):
+    permission_required = 'recipe.create_recipe'
     model = Recipe
     fields = ['title', 'content', 'status']
     #exclude = ['last_update', 'creation_date', 'edited_by', 'created_by']
     initial = {'status': 'Draft'}
 
-class RecipeUpdate(UpdateView):
-    model = Recipe
-    fields = ['title', 'content']
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
-class RecipeDelete(DeleteView):
+class RecipeUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'recipe.update_recipe'
+    model = Recipe
+    fields = ['title', 'content', 'status']
+
+    def form_valid(self, form):
+        form.instance.edited_by = self.request.user
+        form.instance.last_update = datetime.now()
+        return super().form_valid(form)
+
+class RecipeDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'recipe.delete_recipe'
     model = Recipe
     success_url = reverse_lazy('recipes')
